@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='2'>
+  <artifact classifier='osgi.bundle' id='org.eclipse.wst.jsdt.core' version='1.3.401.v201511181529'>
+    <properties size='5'>
+      <property name='artifact.size' value='3676800'/>
+      <property name='download.size' value='3676800'/>
+      <property name='maven-groupId' value='org.eclipse.webtools.jsdt.bundles'/>
+      <property name='maven-artifactId' value='org.eclipse.wst.jsdt.core'/>
+      <property name='maven-version' value='1.3.401-SNAPSHOT'/>
+    </properties>
+  </artifact>
+  <artifact classifier='osgi.bundle' id='org.eclipse.wst.jsdt.core.source' version='1.3.401.v201511181529'>
+    <properties size='6'>
+      <property name='artifact.size' value='3059744'/>
+      <property name='download.size' value='3059744'/>
+      <property name='maven-groupId' value='org.eclipse.webtools.jsdt.bundles'/>
+      <property name='maven-artifactId' value='org.eclipse.wst.jsdt.core'/>
+      <property name='maven-version' value='1.3.401-SNAPSHOT'/>
+      <property name='maven-classifier' value='sources'/>
+    </properties>
+  </artifact>
+</artifacts>
