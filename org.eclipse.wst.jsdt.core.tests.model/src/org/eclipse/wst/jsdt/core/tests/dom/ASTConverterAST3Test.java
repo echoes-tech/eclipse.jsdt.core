@@ -13,6 +13,7 @@ package org.eclipse.wst.jsdt.core.tests.dom;
 
 import java.util.List;
 
+import org.eclipse.wst.jsdt.core.dom.ASTParser;
 import org.eclipse.wst.jsdt.core.IJavaScriptProject;
 import org.eclipse.wst.jsdt.core.IJavaScriptUnit;
 import org.eclipse.wst.jsdt.core.JavaScriptCore;
@@ -9463,5 +9464,168 @@ public class ASTConverterAST3Test extends ConverterTestSetup {
 		assertTrue("Not an superconstructorinvocation", statement.getNodeType() == ASTNode.SUPER_CONSTRUCTOR_INVOCATION); //$NON-NLS-1$
 		checkSourceRange(statement, "super();", source); //$NON-NLS-1$
 	}	
+	public void test0401() throws JavaScriptModelException {
+		// init values
+		final String lId = "a";
+		final String rId = "b";
+		final String opStr = "===";
+		final String content = lId+opStr+rId;
+
+		// parse content
+		final ASTParser newParser = ASTParser.newParser(AST.JLS3);
+		newParser.setSource(content.toCharArray());
+		newParser.setKind(ASTParser.K_EXPRESSION);
+		final ASTNode eeequals = newParser.createAST(null);
+
+		// check top level expression
+		assertTrue(eeequals instanceof InfixExpression);
+		InfixExpression ie = (InfixExpression) eeequals;
+		Expression leftOperand = ie.getLeftOperand();
+		Expression rightOperand = ie.getRightOperand();
+		InfixExpression.Operator operator = ie.getOperator();
+		List extendedOperands = ie.extendedOperands();
+
+		assertNotNull(operator);
+		assertNotNull(leftOperand);
+		assertNotNull(rightOperand);
+		assertEquals(0, extendedOperands.size());
+
+		// check operands
+		assertTrue(leftOperand instanceof SimpleName);
+		SimpleName lOp = (SimpleName) leftOperand;
+		assertNotNull(lOp.getIdentifier());
+		assertEquals(lOp.getIdentifier(), lId);
+
+		assertTrue(rightOperand instanceof SimpleName);
+		SimpleName rOp = (SimpleName) rightOperand;
+		assertNotNull(rOp.getIdentifier());
+		assertEquals(rOp.getIdentifier(), rId);
+
+		// check operator
+		assertEquals(InfixExpression.Operator.toOperator(opStr), operator);
+	}
+
+	public void test0402() throws JavaScriptModelException {
+		// init values
+		final String lId = "a";
+		final String rId = "b";
+		final String opStr = "!==";
+		final String content = lId+opStr+rId;
+
+		// parse content
+		final ASTParser newParser = ASTParser.newParser(AST.JLS3);
+		newParser.setSource(content.toCharArray());
+		newParser.setKind(ASTParser.K_EXPRESSION);
+		final ASTNode eeequals = newParser.createAST(null);
+
+		// check top level expression
+		assertTrue(eeequals instanceof InfixExpression);
+		InfixExpression ie = (InfixExpression) eeequals;
+		Expression leftOperand = ie.getLeftOperand();
+		Expression rightOperand = ie.getRightOperand();
+		InfixExpression.Operator operator = ie.getOperator();
+		List extendedOperands = ie.extendedOperands();
+
+		assertNotNull(operator);
+		assertNotNull(leftOperand);
+		assertNotNull(rightOperand);
+		assertEquals(0, extendedOperands.size());
+
+		// check operands
+		assertTrue(leftOperand instanceof SimpleName);
+		SimpleName lOp = (SimpleName) leftOperand;
+		assertNotNull(lOp.getIdentifier());
+		assertEquals(lOp.getIdentifier(), lId);
+
+		assertTrue(rightOperand instanceof SimpleName);
+		SimpleName rOp = (SimpleName) rightOperand;
+		assertNotNull(rOp.getIdentifier());
+		assertEquals(rOp.getIdentifier(), rId);
+
+		// check operator
+		assertEquals(InfixExpression.Operator.toOperator(opStr), operator);
+	}
+
+	public void test0403() throws JavaScriptModelException {
+		// init values
+		final String lId = "a";
+		final String rId = "b";
+		final String opStr = "instanceof";
+		final String content = lId+" "+opStr+" "+rId;
+
+		// parse content
+		final ASTParser newParser = ASTParser.newParser(AST.JLS3);
+		newParser.setSource(content.toCharArray());
+		newParser.setKind(ASTParser.K_EXPRESSION);
+		final ASTNode eeequals = newParser.createAST(null);
+
+		// check top level expression
+		assertTrue(eeequals instanceof InfixExpression);
+		InfixExpression ie = (InfixExpression) eeequals;
+		Expression leftOperand = ie.getLeftOperand();
+		Expression rightOperand = ie.getRightOperand();
+		InfixExpression.Operator operator = ie.getOperator();
+		List extendedOperands = ie.extendedOperands();
+
+		assertNotNull(operator);
+		assertNotNull(leftOperand);
+		assertNotNull(rightOperand);
+		assertEquals(0, extendedOperands.size());
+
+		// check operands
+		assertTrue(leftOperand instanceof SimpleName);
+		SimpleName lOp = (SimpleName) leftOperand;
+		assertNotNull(lOp.getIdentifier());
+		assertEquals(lOp.getIdentifier(), lId);
+
+		assertTrue(rightOperand instanceof SimpleName);
+		SimpleName rOp = (SimpleName) rightOperand;
+		assertNotNull(rOp.getIdentifier());
+		assertEquals(rOp.getIdentifier(), rId);
+
+		// check operator
+		assertEquals(InfixExpression.Operator.toOperator(opStr), operator);
+	}
+
+	public void test0404() throws JavaScriptModelException {
+		// init values
+		final String lId = "a";
+		final String rId = "b";
+		final String opStr = "in";
+		final String content = lId+" "+opStr+" "+rId;
+
+		// parse content
+		final ASTParser newParser = ASTParser.newParser(AST.JLS3);
+		newParser.setSource(content.toCharArray());
+		newParser.setKind(ASTParser.K_EXPRESSION);
+		final ASTNode eeequals = newParser.createAST(null);
+
+		// check top level expression
+		assertTrue(eeequals instanceof InfixExpression);
+		InfixExpression ie = (InfixExpression) eeequals;
+		Expression leftOperand = ie.getLeftOperand();
+		Expression rightOperand = ie.getRightOperand();
+		InfixExpression.Operator operator = ie.getOperator();
+		List extendedOperands = ie.extendedOperands();
+
+		assertNotNull(operator);
+		assertNotNull(leftOperand);
+		assertNotNull(rightOperand);
+		assertEquals(0, extendedOperands.size());
+
+		// check operands
+		assertTrue(leftOperand instanceof SimpleName);
+		SimpleName lOp = (SimpleName) leftOperand;
+		assertNotNull(lOp.getIdentifier());
+		assertEquals(lOp.getIdentifier(), lId);
+
+		assertTrue(rightOperand instanceof SimpleName);
+		SimpleName rOp = (SimpleName) rightOperand;
+		assertNotNull(rOp.getIdentifier());
+		assertEquals(rOp.getIdentifier(), rId);
+
+		// check operator
+		assertEquals(InfixExpression.Operator.toOperator(opStr), operator);
+	}
 }
 
