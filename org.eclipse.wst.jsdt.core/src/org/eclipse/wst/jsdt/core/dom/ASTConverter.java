@@ -1340,6 +1340,15 @@ class ASTConverter {
 				break;
 			case org.eclipse.wst.jsdt.internal.compiler.ast.OperatorIds.NOT_EQUAL :
 				infixExpression.setOperator(InfixExpression.Operator.NOT_EQUALS);
+				break;
+			case org.eclipse.wst.jsdt.internal.compiler.ast.OperatorIds.NOT_EQUAL_EQUAL :
+				infixExpression.setOperator(InfixExpression.Operator.NOT_EQUAL_EQUAL);
+				break;
+			case org.eclipse.wst.jsdt.internal.compiler.ast.OperatorIds.EQUAL_EQUAL_EQUAL :
+				infixExpression.setOperator(InfixExpression.Operator.EQUAL_EQUAL_EQUAL);
+				break;
+			default:
+				throw new UnsupportedOperationException();
 		}
 		return infixExpression;
 
