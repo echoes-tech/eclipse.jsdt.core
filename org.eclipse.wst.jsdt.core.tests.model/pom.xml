@@ -1,58 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Copyright (c) 2012, 2014 Eclipse Foundation and others.
-  All rights reserved. This program and the accompanying materials
-  are made available under the terms of the Eclipse Distribution License v1.0
-  which accompanies this distribution, and is available at
-  http://www.eclipse.org/org/documents/edl-v10.php
- 
-  Contributors:
-    Thanh Ha (Eclipse Foundation) - initial implementation
-    Mickael Istria (Red Hat Inc.) - 425796 intermediary pom for factorization
--->
+<!-- Copyright (c) 2012, 2014 Eclipse Foundation and others. All rights reserved.
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Distribution License v1.0 which accompanies this distribution,
+	and is available at http://www.eclipse.org/org/documents/edl-v10.php Contributors:
+	Thanh Ha (Eclipse Foundation) - initial implementation Mickael Istria (Red
+	Hat Inc.) - 425796 intermediary pom for factorization -->
 
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-	<groupId>fr.echoes.eclipse.jsdt.core</groupId>
-	<artifactId>org.eclipse.wst.jsdt</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-  </parent>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>fr.echoes.eclipse.jsdt.core</groupId>
+		<artifactId>org.eclipse.wst.jsdt</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
 
-  <artifactId>org.eclipse.wst.jsdt.core.tests.model</artifactId>
-  <version>1.0.700-SNAPSHOT</version>
-  <packaging>eclipse-test-plugin</packaging>
-  
-  <properties>
-  	<testSuite>${project.artifactId}</testSuite>
-  	<testClass>org.eclipse.wst.jsdt.core.tests.RunJSDTCoreTests</testClass>
-  </properties>
+	<artifactId>org.eclipse.wst.jsdt.core.tests.model</artifactId>
+	<version>1.0.700-SNAPSHOT</version>
+	<packaging>eclipse-test-plugin</packaging>
 
-  <profiles>
-    <profile>
-      <id>eclipse-sign</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.eclipse.cbi.maven.plugins</groupId>
-            <artifactId>eclipse-jarsigner-plugin</artifactId>
-            <version>${cbi-plugins.version}</version>
-            <executions>
-              <execution>
-                <id>sign</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-                <configuration>
-                  <excludeInnerJars>true</excludeInnerJars>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
+	<properties>
+		<testSuite>${project.artifactId}</testSuite>
+		<testClass>org.eclipse.wst.jsdt.core.tests.RunJSDTCoreTests</testClass>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -16,7 +16,10 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-
+	<properties>
+		<tycho-version>0.24.0</tycho-version>
+	</properties>
+	
 	<modules>
 		<module>org.eclipse.wst.jsdt.core</module>
 		<module>org.eclipse.wst.jsdt.core.tests.compiler</module>
@@ -40,11 +43,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<properties>
-		<tycho-version>0.24.0</tycho-version>
-		<tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/jsdt/webtools.jsdt.git</tycho.scmUrl>
-	</properties>
 
 	<repositories>
 		<!-- add Mars repository to resolve dependencies -->
@@ -71,18 +69,8 @@
 			<url>https://repo.eclipse.org/content/repositories/webtools-snapshots/</url>
 		</repository>
 	</repositories>
-	
-	
+
 	<distributionManagement>
-
-		<repository>
-			<uniqueVersion>false</uniqueVersion>
-			<id>nexus</id>
-			<name>JSDT Core</name>
-			<url>http://zeus:8081/nexus/content/repositories/eclipse.jsdt.core/</url>
-			<layout>default</layout>
-		</repository>
-
 		<snapshotRepository>
 			<uniqueVersion>false</uniqueVersion>
 			<id>nexus</id>
