@@ -71,4 +71,24 @@
 			<url>https://repo.eclipse.org/content/repositories/webtools-snapshots/</url>
 		</repository>
 	</repositories>
+	
+	
+	<distributionManagement>
+
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>nexus</id>
+			<name>JSDT Core</name>
+			<url>http://zeus:8081/nexus/content/repositories/eclipse.jsdt.core/</url>
+			<layout>default</layout>
+		</repository>
+
+		<snapshotRepository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>nexus</id>
+			<name>JSDT Core</name>
+			<url>http://zeus:8081/nexus/content/repositories/eclipse.jsdt.core/</url>
+			<layout>default</layout>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
