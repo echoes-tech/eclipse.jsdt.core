@@ -32,10 +32,10 @@ import java.util.List;
  * Call the <code>reset</code> method to clear the previous result before reusing an
  * existing instance.
  * </p>
- * 
- * Provisional API: This class/interface is part of an interim API that is still under development and expected to 
- * change significantly before reaching stability. It is being made available at this early stage to solicit feedback 
- * from pioneering adopters on the understanding that any code that uses this API will almost certainly be broken 
+ *
+ * Provisional API: This class/interface is part of an interim API that is still under development and expected to
+ * change significantly before reaching stability. It is being made available at this early stage to solicit feedback
+ * from pioneering adopters on the understanding that any code that uses this API will almost certainly be broken
  * (repeatedly) as the API evolves.
  */
 class NaiveASTFlattener extends ASTVisitor {
@@ -240,7 +240,7 @@ class NaiveASTFlattener extends ASTVisitor {
 
 	/*
 	 * @see ASTVisitor#visit(BlockComment)
-	 *  
+	 *
 	 */
 	public boolean visit(BlockComment node) {
 		printIndent();
@@ -448,7 +448,7 @@ class NaiveASTFlattener extends ASTVisitor {
 
 	/*
 	 * @see ASTVisitor#visit(EnhancedForStatement)
-	 *  
+	 *
 	 */
 	public boolean visit(EnhancedForStatement node) {
 		printIndent();
@@ -662,7 +662,7 @@ class NaiveASTFlattener extends ASTVisitor {
 
 	/*
 	 * @see ASTVisitor#visit(LineComment)
-	 *  
+	 *
 	 */
 	public boolean visit(LineComment node) {
 		this.buffer.append("//\n");//$NON-NLS-1$
@@ -682,7 +682,7 @@ class NaiveASTFlattener extends ASTVisitor {
 
 	/*
 	 * @see ASTVisitor#visit(MemberRef)
-	 *  
+	 *
 	 */
 	public boolean visit(MemberRef node) {
 		if (node.getQualifier() != null) {
@@ -696,7 +696,7 @@ class NaiveASTFlattener extends ASTVisitor {
 
 	/*
 	 * @see ASTVisitor#visit(FunctionRef)
-	 *  
+	 *
 	 */
 	public boolean visit(FunctionRef node) {
 		if (node.getQualifier() != null) {
@@ -718,7 +718,7 @@ class NaiveASTFlattener extends ASTVisitor {
 
 	/*
 	 * @see ASTVisitor#visit(FunctionRefParameter)
-	 *  
+	 *
 	 */
 	public boolean visit(FunctionRefParameter node) {
 		node.getType().accept(this);
@@ -834,7 +834,7 @@ class NaiveASTFlattener extends ASTVisitor {
 
 	/*
 	 * @see ASTVisitor#visit(Modifier)
-	 *  
+	 *
 	 */
 	public boolean visit(Modifier node) {
 		this.buffer.append(node.getKeyword().toString());
@@ -956,7 +956,7 @@ class NaiveASTFlattener extends ASTVisitor {
 
 	/*
 	 * @see ASTVisitor#visit(QualifiedType)
-	 *  
+	 *
 	 */
 	public boolean visit(QualifiedType node) {
 		node.getQualifier().accept(this);
@@ -1152,7 +1152,7 @@ class NaiveASTFlattener extends ASTVisitor {
 
 	/*
 	 * @see ASTVisitor#visit(TagElement)
-	 *  
+	 *
 	 */
 	public boolean visit(TagElement node) {
 		if (node.isNested()) {
@@ -1192,7 +1192,7 @@ class NaiveASTFlattener extends ASTVisitor {
 
 	/*
 	 * @see ASTVisitor#visit(TextElement)
-	 *  
+	 *
 	 */
 	public boolean visit(TextElement node) {
 		this.buffer.append(node.getText());
@@ -1304,19 +1304,22 @@ class NaiveASTFlattener extends ASTVisitor {
 		this.buffer.append(".class");//$NON-NLS-1$
 		return false;
 	}
-	
+
 	/*
 	 * @see ASTVisitor#visit(VariableDeclarationExpression)
 	 */
 	public boolean visit(VariableDeclarationExpression node) {
-		if (node.getAST().apiLevel() == AST.JLS2_INTERNAL) {
+		final int apiLevel = node.getAST().apiLevel();
+		if (apiLevel == AST.JLS2_INTERNAL) {
 			printModifiers(node.getModifiers());
 		}
-		if (node.getAST().apiLevel() >= AST.JLS3) {
+		if (apiLevel >= AST.JLS3) {
 			printModifiers(node.modifiers());
 		}
-		node.getType().accept(this);
-		this.buffer.append(" ");//$NON-NLS-1$
+//		Type type = node.getType();
+//		if (type!=null)
+//			type.accept(this);
+		this.buffer.append("var ");//$NON-NLS-1$
 		for (Iterator it = node.fragments().iterator(); it.hasNext(); ) {
 			VariableDeclarationFragment f = (VariableDeclarationFragment) it.next();
 			f.accept(this);
