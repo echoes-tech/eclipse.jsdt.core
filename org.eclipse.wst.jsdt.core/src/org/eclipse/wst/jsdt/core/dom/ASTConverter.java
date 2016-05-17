@@ -348,7 +348,7 @@ class ASTConverter {
 		int start = methodDeclaration.sourceStart;
 		int end;
 		 SimpleName methodName =null;
-		if (methodDeclaration.selector != null) // We couldn't use inferred method name here, so 
+		if (methodDeclaration.selector != null) // We couldn't use inferred method name here, so
 												// do not use methodDeclaration.getName() here!
 		{
 			  methodName = new SimpleName(this.ast);
@@ -981,6 +981,11 @@ class ASTConverter {
 			for (int i = 0; i < statementsLength; i++) {
 				if (statements[i] instanceof org.eclipse.wst.jsdt.internal.compiler.ast.LocalDeclaration) {
 					checkAndAddMultipleLocalDeclaration(statements, i, block.statements());
+				} else if (statements[i] instanceof AbstractMethodDeclaration) {
+					final ASTNode res = convert((AbstractMethodDeclaration)statements[i]);
+					if (res != null) {
+						block.statements().add(res);
+					}
 				} else {
 					Statement statement2 = convert(statements[i]);
 					if (statement2 != null) {
@@ -1068,11 +1073,11 @@ class ASTConverter {
 		}
 		return objectLiteralField;
 	}
-	
+
 	public ObjectLiteralField convert(org.eclipse.wst.jsdt.internal.compiler.ast.ObjectGetterSetterField field) {
 		ObjectLiteralField objectLiteralField = new ObjectLiteralField(this.ast);
 		objectLiteralField.setSourceRange(field.sourceStart, field.sourceEnd - field.sourceStart + 1);
-		
+
 		// ignore get set properties
 //		objectLiteralField.setFieldName( convert(field.fieldName));
 //		objectLiteralField.setInitializer( convert(field.initializer));
@@ -1859,7 +1864,7 @@ class ASTConverter {
 				recordNodes(name, expression);
 			}
 			superMethodInvocation.setName(name);
-			
+
 			org.eclipse.wst.jsdt.internal.compiler.ast.Expression[] arguments = expression.arguments;
 			if (arguments != null) {
 				int argumentsLength = arguments.length;
@@ -2403,7 +2408,7 @@ class ASTConverter {
 					break;
 			}
 		}
-		
+
 		buildBodyDeclarations(typeDeclaration, typeDecl);
 		if (this.resolveBindings) {
 			recordNodes(typeDecl, typeDeclaration);
@@ -2501,7 +2506,7 @@ class ASTConverter {
 		importDeclaration.setSourceRange(importReference.declarationSourceStart, importReference.declarationEnd - importReference.declarationSourceStart + 1);
 		importDeclaration.setOnDemand(onDemand && !isFile);
 		importDeclaration.setIsFileImport(isFile);
-		
+
 		if (this.resolveBindings) {
 			recordNodes(importDeclaration, importReference);
 		}
@@ -2529,7 +2534,7 @@ class ASTConverter {
 			}
 		}
 		packageDeclaration.setSourceRange(importReference.declarationSourceStart, importReference.declarationEnd - importReference.declarationSourceStart + 1);
-		
+
 		if (this.resolveBindings) {
 			recordNodes(packageDeclaration, importReference);
 		}
@@ -2802,7 +2807,7 @@ class ASTConverter {
 			simpleType.setName(qualifiedName);
 			type = simpleType;
 			type.setSourceRange(sourceStart, length);
-			
+
 			length = typeReference.sourceEnd - sourceStart + 1;
 			if (dimensions != 0) {
 				type = this.ast.newArrayType(type, dimensions);
