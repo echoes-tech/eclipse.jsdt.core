@@ -75,7 +75,7 @@
 			<uniqueVersion>false</uniqueVersion>
 			<id>nexus</id>
 			<name>JSDT Core</name>
-			<url>http://zeus.tocea.local:8081/nexus/content/repositories/eclipse.jsdt.core/</url>
+			<url>https://ksf.metrixware.local/nexus/content/repositories/branches-releases</url>
 			<layout>default</layout>
 		</snapshotRepository>
 	</distributionManagement>
