@@ -73,7 +73,7 @@
 	<distributionManagement>
 		<snapshotRepository>
 			<uniqueVersion>false</uniqueVersion>
-			<id>nexus</id>
+			<id>CaladanNexus</id>
 			<name>JSDT Core</name>
 			<url>https://ksf.metrixware.local/nexus/content/repositories/branches-releases</url>
 			<layout>default</layout>
